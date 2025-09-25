@@ -1,0 +1,52 @@
+@use './variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --background-neutral: #{$background-neutral};
+  --background-primary: #{$background-primary};
+
+  --font-family: #{$font-family};
+  --font-size-m: #{$font-size-m};
+  --font-size-s: #{$font-size-s};
+
+  --spacer-0: #{$spacer-0};
+  --spacer-4xs: #{$spacer-4xs};
+  --spacer-3xs: #{$spacer-3xs};
+  --spacer-2xs: #{$spacer-2xs};
+  --spacer-xs: #{$spacer-xs};
+  --spacer-s: #{$spacer-s};
+  --spacer-m: #{$spacer-m};
+  --spacer-l: #{$spacer-l};
+  --spacer-xl: #{$spacer-xl};
+  --spacer-2xl: #{$spacer-2xl};
+
+  --label-color-primary: #{$label-color-primary};
+  --label-color-neutral: #{$label-color-neutral};
+
+  --badge-color-neutral: #{$badge-color-neutral};
+  --badge-color-positive: #{$badge-color-positive};
+  --badge-color-negative: #{$badge-color-negative};
+
+  --tab-selected-default: #{$tab-selected-default};
+  --tab-selected-hover: #{$tab-selected-hover};
+  --tab-selected-active: #{$tab-selected-active};
+  --tab-unselected-default: #{$tab-unselected-default};
+  --tab-unselected-hover: #{$tab-unselected-hover};
+  --tab-unselected-active: #{$tab-unselected-active};
+  --tab-unselected-border: #{$tab-unselected-border};
+  --tab-unselected-border-hover: #{$tab-unselected-border-hover};
+
+  --radius-sm: #{$border-radius-sm};
+  --radius-md: #{$border-radius-md};
+  --radius-lg: #{$border-radius-lg};
+  --radius-full: #{$border-radius-full};
+}
+
+body {
+  background-color: var(--background-neutral);
+  color: var(--label-color-primary);
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  font-family: var(--font-family);
+}

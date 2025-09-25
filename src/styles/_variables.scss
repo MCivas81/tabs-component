@@ -1,0 +1,45 @@
+// Fonts
+$font-family: 'Inter', sans-serif;
+$font-size-m: 0.875rem; // 14px
+$font-size-s: 0.75rem; // 12px
+
+// Background colors
+$background-neutral: #fff;
+$background-primary: #7817bd;
+
+// Label colors
+$label-color-primary: #222;
+$label-color-neutral: #fff;
+
+// Badge colors
+$badge-color-neutral: #f1f1f7;
+$badge-color-positive: #b1ffc7;
+$badge-color-negative: #ffbfb1;
+
+// Tab colors
+$tab-selected-default: #1b2134;
+$tab-selected-hover: #343a4e;
+$tab-selected-active: #585d71;
+$tab-unselected-default: #ffffff;
+$tab-unselected-hover: #f6f6fa;
+$tab-unselected-active: #f1f1f7;
+$tab-unselected-border: #d3d3dc;
+$tab-unselected-border-hover: #c4c5cf;
+
+// Spacings
+$spacer-0: 0; // 0px
+$spacer-4xs: 0.125rem; // 2px
+$spacer-3xs: 0.25rem; // 4px
+$spacer-2xs: 0.5rem; // 8px
+$spacer-xs: 0.75rem; // 12px
+$spacer-s: 1rem; // 16px
+$spacer-m: 1.25rem; // 20px
+$spacer-l: 1.5rem; // 24px
+$spacer-xl: 2rem; // 32px
+$spacer-2xl: 3rem; // 48px
+
+// Border radius
+$border-radius-sm: 0.25rem; // 4px
+$border-radius-md: 0.5rem; // 8px
+$border-radius-lg: 0.75rem; // 12px
+$border-radius-full: 62.5rem; // 100px

@@ -26,7 +26,7 @@
   right: 0;
   height: 3px;
   background: $color;
-  border-radius: 100px;
+  border-radius: var(--radius-full);
 }
 
 @mixin breakpoint($point) {

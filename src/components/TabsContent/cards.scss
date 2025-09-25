@@ -5,10 +5,10 @@
   gap: var(--spacer-s);
 
   .card {
-    background: #7817bd;
+    background: var(--background-primary);
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     display: flex;
     justify-content: center;
     align-items: center;
