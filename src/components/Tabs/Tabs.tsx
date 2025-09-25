@@ -1,6 +1,5 @@
 import React from 'react'
 import { TabsProps } from './Tabs.types'
-import Tab from './Tab'
 import './Tabs.scss'
 
 const Tabs: React.FC<TabsProps> = ({
@@ -17,13 +16,30 @@ const Tabs: React.FC<TabsProps> = ({
         className={`tabs__list tabs__list--${variant}`}
       >
         {tabs.map(tab => (
-          <Tab
+          <button
             key={tab.id}
-            {...tab}
-            isSelected={tab.id === selectedTab}
+            role='tab'
+            id={`tab-${tab.id}`}
+            aria-selected={tab.id === selectedTab}
+            aria-controls={`panel-${tab.id}`}
+            className={`tab tab--${variant} ${
+              tab.id === selectedTab ? 'selected' : ''
+            }`}
             onClick={() => handleSelect(tab.id)}
-            variant={variant}
-          />
+            onKeyDown={e => {
+              if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault()
+                handleSelect(tab.id)
+              }
+            }}
+          >
+            {tab.label}
+            {tab.badge && (
+              <span className={`badge badge--${tab.badge.variant}`}>
+                {tab.badge.label}
+              </span>
+            )}
+          </button>
         ))}
       </div>
       {tabs.map(tab =>
