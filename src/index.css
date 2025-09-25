@@ -1,14 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
-  --background: #eee;
+  --background: #fff;
   --content: #222;
+
+  /* Font family */
+  --font-family: 'Inter', sans-serif;
+
+  /*  Font sizes */
+  --font-size-m: 14px;
+  --font-size-s: 12px;
+
+  /*  Spacings */
+  --spacer-0: 0;
+  --spacer-4xs: 0.125rem;
+  --spacer-3xs: 0.25rem;
+  --spacer-2xs: 0.5rem;
+  --spacer-xs: 0.75rem;
+  --spacer-s: 1rem;
+  --spacer-m: 1.25rem;
+  --spacer-l: 1.5rem;
+  --spacer-xl: 2rem;
+  --spacer-2xl: 3rem;
+
+  /*  Label colors */
+  --label-color-primary: #222;
+  --label-color-neutral: #fff;
+
+  /*  Badge colors  */
+  --badge-color-neutral: #f1f1f7;
+  --badge-color-positive: #b1ffc7;
+  --badge-color-negative: #ffbfb1;
+
+  /*  Tab colors  */
+  --tab-selected-default: #1b2134;
+  --tab-selected-hover: #343a4e;
+  --tab-selected-active: #585d71;
+  --tab-unselected-default: #ffffff;
+  --tab-unselected-hover: #f6f6fa;
+  --tab-unselected-active: #f1f1f7;
+  --tab-unselected-border: #d3d3dc;
+  --tab-unselected-border-hover: #c4c5cf;
 }
 
 body {
   background-color: var(--background);
   color: var(--content);
-  display: grid;
-  font-size: 2rem;
   margin: 0;
   min-height: 100vh;
-  place-content: center;
+  padding: 0;
+  font-family: var(--font-family);
 }
