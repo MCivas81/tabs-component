@@ -73,7 +73,12 @@ export const Pill: Story = {
     tabs: [
       { id: '1', label: 'Tab 1', content: <div>Content 1</div> },
       { id: '2', label: 'Tab 2', content: <div>Content 2</div> },
-      { id: '3', label: 'Tab 3', content: <div>Content 3</div> },
+      {
+        id: '3',
+        label: 'Tab 3',
+        badge: { label: 'Info', variant: 'neutral' },
+        content: <div>Content 3</div>
+      },
       {
         id: '4',
         label: 'Tab 4',
