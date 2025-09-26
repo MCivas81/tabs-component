@@ -1,27 +1,40 @@
-# Frontend Interview - Design System
+# Tabs Component
 
-Hey 👋
+A reusable, accessible **Tabs** component built with React and TypeScript.  
+It allows switching between multiple panels of content while supporting **keyboard navigation**, **ARIA roles**, and **badges**.
 
-This is the base repository for the home test. The repository is created with `vite` and is empty, but contains some packages already installed, in particular:
+---
 
-- `react`
-- `storybook`
-- `vitest`
+## ✨ Features
 
-## Install and run
+- **Accessible Tablist**  
+  Built following accessibility best practices for tabs ([WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)).
 
-```bash
-# Install dependencies
-# This project use `pnpm` as package manager, but you can use also `npm` or `yarn`.
-pnpm install
+- **Keyboard Navigation**  
+  - `ArrowRight` → moves focus to the next tab (loops to the first at the end).  
+  - `ArrowLeft` → moves focus to the previous tab (loops to the last at the beginning).  
+  - `Enter` / `Space` → selects the currently focused tab.
 
-# And run the project
-pnpm dev
+- **Customizable Variants**  
+  - `variant` prop allows different visual styles (`"underline"`, `"pill"`).
 
-# Optional: Run Storybook
-pnpm storybook
-```
+- **Dynamic Tab Content**  
+  - Each tab can render **any React content** via the `content` field.
 
-## Figma file
+- **Badges**  
+  - Optional `badge` on each tab to display a count or status.  
 
-The figma file of the home test is available [here](https://www.figma.com/design/OclakAGLSXDoMKLFvwLNMP/%F0%9F%92%BB-Design-System-Home-Test---Tabs-Component?node-id=0-1&t=4pG7NN6HKxgxroDz-1).
+- **SCSS Styling**  
+  - Uses `Tabs.scss` with BEM-style class names:  
+    - `tabs__list`, `tabs__panel`, `tab--underline`, `tab--selected`, etc.
+
+- **Fully Type-Safe**  
+  - Built with TypeScript and strongly typed props (`TabsProps`).
+
+- **Storybook Integration**  
+  - A dedicated Storybook story (`Tabs.stories.tsx`) has been created to showcase the component in isolation and demonstrate different variants and use cases.
+
+- **Unit Tests**  
+  - Unit tests have been implemented with Vitest to ensure reliability and maintain accessibility and keyboard navigation behavior.
+
+---
