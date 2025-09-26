@@ -2,12 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --background-neutral: #{$background-neutral};
-  --background-primary: #{$background-primary};
+  --neutral: #{$color-neutral};
+  --primary: #{$color-primary};
+  --secondary: #{$color-secondary};
+  --gray: #{$color-gray};
+  --gray-light: #{$color-gray-light};
+  --gray-dark: #{$color-gray-dark};
 
   --font-family: #{$font-family};
-  --font-size-m: #{$font-size-m};
   --font-size-s: #{$font-size-s};
+  --font-size-m: #{$font-size-m};
+  --font-size-l: #{$font-size-l};
+  --font-size-xl: #{$font-size-xl};
 
   --spacer-0: #{$spacer-0};
   --spacer-4xs: #{$spacer-4xs};
@@ -39,11 +45,16 @@
   --radius-sm: #{$border-radius-sm};
   --radius-md: #{$border-radius-md};
   --radius-lg: #{$border-radius-lg};
+  --radius-xl: #{$border-radius-xl};
+  --radius-2xl: #{$border-radius-2xl};
+  --radius-3xl: #{$border-radius-3xl};
+  --radius-4xl: #{$border-radius-4xl};
+  --radius-5xl: #{$border-radius-5xl};
   --radius-full: #{$border-radius-full};
 }
 
 body {
-  background-color: var(--background-neutral);
+  background-color: var(--neutral);
   color: var(--label-color-primary);
   margin: 0;
   min-height: 100vh;
