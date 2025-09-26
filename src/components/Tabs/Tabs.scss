@@ -88,7 +88,7 @@
     .tab.tab--pill {
       border-radius: var(--radius-full);
       border: 1px solid var(--tab-unselected-border);
-      background: transparent;
+      background: var(--tab-unselected-default);
 
       &:hover {
         background: var(--tab-unselected-hover);
@@ -100,7 +100,7 @@
       }
 
       &:focus-visible {
-        outline: 2px solid #000000;
+        outline: 2px solid var(--tab-selected-default);
         outline-offset: 2px;
       }
 
@@ -122,6 +122,11 @@
 
   .tabs__panel {
     padding: 0.25rem;
+
+    &:focus { 
+      outline: 2px solid var(--tab-selected-default);
+      outline-offset: 2px;
+    }
   }
 }
 

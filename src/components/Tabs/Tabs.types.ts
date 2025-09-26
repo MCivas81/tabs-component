@@ -3,7 +3,7 @@ export type BadgeVariant = 'neutral' | 'positive' | 'negative'
 
 export interface BadgeProps {
   label: string
-  variant?: BadgeVariant
+  variant: BadgeVariant
 }
 
 export interface TabProps {
@@ -18,4 +18,5 @@ export interface TabsProps {
   selectedTab: string
   handleSelect: (id: string) => void
   variant?: TabVariant
+  ariaLabelTabList: string
 }

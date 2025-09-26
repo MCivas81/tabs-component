@@ -39,6 +39,7 @@ function App () {
         tabs={tabData}
         selectedTab={selected}
         handleSelect={setSelected}
+        ariaLabelTabList='Main sections'
         variant='pill'
       />
     </div>
