@@ -1,14 +1,27 @@
 import React from 'react'
 import './cards.scss'
 
+const labels = [
+  'RC Auto',
+  'Assistenza stradale',
+  'Furto e incendio',
+  'Eventi atmosferici',
+  'Cristalli',
+  'Kasko',
+  'Atti vandalici',
+  'Infortuni del conducente'
+]
+
 const DashboardContent: React.FC = () => (
-  <div className='cards-grid dashboard'>
-    <div className='card'>Stats</div>
-    <div className='card'>Charts</div>
-    <div className='card'>Overview</div>
-    <div className='card'>Reports</div>
-    <div className='card'>Notifications</div>
-  </div>
+  <section className='cards-section'>
+    <div className='cards-grid dashboard'>
+      {labels.map(label => (
+        <div className='card' tabIndex={0} aria-label={label} key={label}>
+          {label}
+        </div>
+      ))}
+    </div>
+  </section>
 )
 
 export default DashboardContent

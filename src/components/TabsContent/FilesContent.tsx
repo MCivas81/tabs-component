@@ -1,12 +1,18 @@
 import React from 'react'
 import './cards.scss'
 
+const labels = ['File A', 'File B', 'File C', 'File D', 'File E', 'File F']
+
 const FilesContent: React.FC = () => (
-  <div className='cards-grid files'>
-    <div className='card'>File A</div>
-    <div className='card'>File B</div>
-    <div className='card'>File C</div>
-  </div>
+  <section className='cards-section'>
+    <div className='cards-grid files'>
+      {labels.map(label => (
+        <div className='card' tabIndex={0} aria-label={label} key={label}>
+          {label}
+        </div>
+      ))}
+    </div>
+  </section>
 )
 
 export default FilesContent

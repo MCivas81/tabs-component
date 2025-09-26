@@ -1,40 +1,79 @@
-@use '../../styles/mixins' as m;
+@use '../../styles/mixins' as *;
 
-.cards-grid {
-  display: grid;
-  gap: var(--spacer-s);
+.cards-section {
+  padding: var(--spacer-2xl);
+  background: var(--gray-light);
+  border-radius: var(--radius-4xl);
 
-  .card {
-    background: var(--background-primary);
-    color: white;
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+  @include breakpoint(md) {
+    padding: var(--spacer-xl);
+    border-radius: var(--radius-3xl);
   }
 
-  &.emails,
-  &.messages {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
+  .cards-grid {
+    display: grid;
+    gap: var(--spacer-l);
+    max-width: 1400px;
+    margin: 0 auto;
 
-  &.files {
-    grid-template-columns: repeat(2, 1fr);
+    .card {
+      background: var(--neutral);
+      color: var(--label-color-primary);
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      border: 1px solid var(--gray);
+      padding: 1rem;
+      border-radius: var(--radius-2xl);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: none;
 
-    @include m.breakpoint(md) {
-      grid-template-columns: 1fr;
+      @include breakpoint(md) {
+        font-size: var(--font-size-l);
+        border-radius: var(--radius-xl);
+        padding: 0.75rem;
+      }
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: var(--gray-dark);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--secondary);
+        outline-offset: 2px;
+      }
     }
-  }
 
-  &.dashboard {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
-    grid-auto-flow: dense;
+    &.emails,
+    &.messages {
+      grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+      grid-auto-rows: 80px;
 
-    @include m.breakpoint(md) {
-      grid-auto-rows: 150px;
+      @include breakpoint(md) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &.files {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+
+      @include breakpoint(md) {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 80px;
+      }
+    }
+
+    &.dashboard {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-auto-rows: 256px;
+
+      @include breakpoint(md) {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 128px;
+      }
     }
   }
 }

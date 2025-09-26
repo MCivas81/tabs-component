@@ -1,11 +1,18 @@
 import React from 'react'
 import './cards.scss'
 
+const labels = ['Message 1', 'Message 2']
+
 const MessagesContent: React.FC = () => (
-  <div className='cards-grid messages'>
-    <div className='card'>Message 1</div>
-    <div className='card'>Message 2</div>
-  </div>
+  <section className='cards-section'>
+    <div className='cards-grid messages'>
+      {labels.map(label => (
+        <div className='card' tabIndex={0} aria-label={label} key={label}>
+          {label}
+        </div>
+      ))}
+    </div>
+  </section>
 )
 
 export default MessagesContent
