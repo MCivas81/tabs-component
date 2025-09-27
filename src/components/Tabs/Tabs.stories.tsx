@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react-vite'
-import React, { useState } from 'react'
+import React from 'react'
 import Tabs from './Tabs'
 
 const meta: Meta<typeof Tabs> = {
@@ -13,8 +13,8 @@ const meta: Meta<typeof Tabs> = {
       description: 'Variant of the tabs',
       defaultValue: 'underline'
     },
-    handleSelect: { action: 'tab selected' },
-    selectedTab: { control: 'text' },
+    preSelectedTab: { control: 'text' },
+    tabListLabel: { control: 'text' },
     tabs: { control: 'object' }
   },
   parameters: {
@@ -32,16 +32,12 @@ export default meta
 type Story = StoryObj<typeof Tabs>
 
 const Template = (args: React.ComponentProps<typeof Tabs>) => {
-  const [selectedTab, setSelectedTab] = useState(args.selectedTab)
-
   return (
     <Tabs
       {...args}
-      selectedTab={selectedTab}
-      handleSelect={(id: string) => {
-        setSelectedTab(id)
-        args.handleSelect?.(id)
-      }}
+      preSelectedTab={args.preSelectedTab}
+      tabListLabel='User settings'
+      variant={args.variant}
     />
   )
 }
@@ -59,10 +55,8 @@ export const underline: Story = {
         content: <div>Content 4</div>
       }
     ],
-    selectedTab: '1',
-    handleSelect: (id: string) => {
-      console.log(`Selected tab: ${id}`)
-    },
+    preSelectedTab: '1',
+    tabListLabel: 'User settings',
     variant: 'underline'
   },
   render: Template
@@ -86,10 +80,8 @@ export const Pill: Story = {
         content: <div>Content 4</div>
       }
     ],
-    selectedTab: '1',
-    handleSelect: (id: string) => {
-      console.log(`Selected tab: ${id}`)
-    },
+    preSelectedTab: '1',
+    tabListLabel: 'User settings',
     variant: 'pill'
   },
   render: Template

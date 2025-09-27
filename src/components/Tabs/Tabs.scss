@@ -12,9 +12,10 @@
     display: flex;
     gap: var(--spacer-xl);
     margin-bottom: 1.5rem;
-    padding: 0.25rem; // to avoid cutting the outline when a tab is focused
+    padding: 0.25rem;
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
 
     -ms-overflow-style: none; /* IE + Edge */
     scrollbar-width: none; /* Firefox */
@@ -123,7 +124,7 @@
   .tabs__panel {
     padding: 0.25rem;
 
-    &:focus { 
+    &:focus-visible {
       outline: 2px solid var(--tab-selected-default);
       outline-offset: 2px;
     }
@@ -149,9 +150,11 @@
   &--neutral {
     background: var(--badge-color-neutral);
   }
+
   &--positive {
     background: var(--badge-color-positive);
   }
+
   &--negative {
     background: var(--badge-color-negative);
   }

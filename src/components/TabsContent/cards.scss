@@ -16,6 +16,10 @@
     max-width: 1400px;
     margin: 0 auto;
 
+    @include breakpoint(md) {
+      gap: var(--spacer-xs);
+    }
+
     .card {
       background: var(--neutral);
       color: var(--label-color-primary);

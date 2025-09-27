@@ -1,21 +1,23 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, KeyboardEvent } from 'react'
 import { TabsProps } from './Tabs.types'
 import './Tabs.scss'
 
 const Tabs: React.FC<TabsProps> = ({
   tabs,
-  selectedTab,
-  handleSelect,
-  ariaLabelTabList,
+  preSelectedTab,
+  tabListLabel,
   variant = 'underline'
 }) => {
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const tabRefs = useRef<HTMLButtonElement[]>([])
+  const [selectedTab, setSelectedTab] = useState<string>(preSelectedTab)
 
-  const focusTab = (idx: number) => {
-    tabRefs.current[idx]?.focus()
+  const focusTab = (idx: number) => tabRefs.current[idx]?.focus()
+
+  const handleSelect = (id: string) => {
+    setSelectedTab(id)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent, idx: number) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, idx: number) => {
     if (e.key === 'ArrowRight') {
       e.preventDefault()
       const nextIdx = (idx + 1) % tabs.length
@@ -34,7 +36,7 @@ const Tabs: React.FC<TabsProps> = ({
     <div className='tabs'>
       <div
         role='tablist'
-        aria-label={ariaLabelTabList}
+        aria-label={tabListLabel}
         className={`tabs__list tabs__list--${variant}`}
       >
         {tabs.map((tab, idx) => (
@@ -45,12 +47,12 @@ const Tabs: React.FC<TabsProps> = ({
             aria-selected={tab.id === selectedTab}
             aria-controls={`panel-${tab.id}`}
             aria-label={tab.label}
+            tabIndex={tab.id === selectedTab ? 0 : -1}
             className={`tab tab--${variant} ${
               tab.id === selectedTab ? 'selected' : ''
             }`}
-            tabIndex={tab.id === selectedTab ? 0 : -1}
             ref={el => {
-              tabRefs.current[idx] = el
+              if (el) tabRefs.current[idx] = el
             }}
             onClick={() => handleSelect(tab.id)}
             onKeyDown={e => handleKeyDown(e, idx)}

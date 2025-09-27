@@ -2,7 +2,10 @@
   padding: 1rem;
 
   h1 {
-    color: var(--primary);
+    color: var(--label-color-primary);
+
+    span {
+      color: var(--primary);
+    }
   }
 }
-  

@@ -35,6 +35,6 @@ It allows switching between multiple panels of content while supporting **keyboa
   - A dedicated Storybook story (`Tabs.stories.tsx`) has been created to showcase the component in isolation and demonstrate different variants and use cases.
 
 - **Unit Tests**  
-  - Unit tests have been implemented with Vitest to ensure reliability and maintain accessibility and keyboard navigation behavior.
+  - Unit tests have been implemented with Vitest to ensure reliability and maintain accessibility and keyboard navigation behavior (100% coverage).
 
 ---

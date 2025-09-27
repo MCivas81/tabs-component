@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import Tabs from '../Tabs'
 import { TabsProps } from '../Tabs.types'
+import Tabs from '../Tabs'
 import { vi } from 'vitest'
 
 describe('Tabs component', () => {
@@ -15,13 +15,12 @@ describe('Tabs component', () => {
     }
   ]
 
-  const setup = (selectedTab = 'emails', handleSelect = vi.fn()) => {
+  const setup = (preSelectedTab = 'emails') => {
     return render(
       <Tabs
         tabs={defaultTabs}
-        selectedTab={selectedTab}
-        handleSelect={handleSelect}
-        ariaLabelTabList='Main sections'
+        preSelectedTab={preSelectedTab}
+        tabListLabel='User settings'
         variant='pill'
       />
     )
@@ -40,24 +39,20 @@ describe('Tabs component', () => {
     expect(screen.queryByText(/emails content/i)).not.toBeInTheDocument()
   })
 
-  it('calls handleSelect when a tab is clicked', () => {
-    const handleSelect = vi.fn()
-    setup('emails', handleSelect)
-
+  it('changes selected tab when a tab is clicked', () => {
+    setup('emails')
     fireEvent.click(screen.getByRole('tab', { name: /files/i }))
-    expect(handleSelect).toHaveBeenCalledWith('files')
+    expect(screen.getByText(/files content/i)).toBeInTheDocument()
+    expect(screen.queryByText(/emails content/i)).not.toBeInTheDocument()
   })
 
-  it('calls handleSelect when pressing Enter or Space', () => {
-    const handleSelect = vi.fn()
-    setup('emails', handleSelect)
-
+  it('changes selected tab when pressing Enter or Space', () => {
+    setup('emails')
     const tab = screen.getByRole('tab', { name: /files/i })
     fireEvent.keyDown(tab, { key: 'Enter' })
+    expect(screen.getByText(/files content/i)).toBeInTheDocument()
     fireEvent.keyDown(tab, { key: ' ' })
-
-    expect(handleSelect).toHaveBeenCalledTimes(2)
-    expect(handleSelect).toHaveBeenCalledWith('files')
+    expect(screen.getByText(/files content/i)).toBeInTheDocument()
   })
 
   it('focuses next tab on ArrowRight keydown', () => {
@@ -117,12 +112,7 @@ describe('Tabs component', () => {
 
   it('renders nothing if tabs array is empty', () => {
     render(
-      <Tabs
-        tabs={[]}
-        selectedTab=''
-        handleSelect={vi.fn()}
-        ariaLabelTabList='Main sections'
-      />
+      <Tabs tabs={[]} preSelectedTab='' tabListLabel='User settings' />
     )
     expect(screen.queryByRole('tab')).not.toBeInTheDocument()
     expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument()

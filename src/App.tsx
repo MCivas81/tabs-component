@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Tabs from './components/Tabs/Tabs'
 import { TabProps } from './components/Tabs/Tabs.types'
 import DashboardContent from './components/TabsContent/DashboardContent'
@@ -30,16 +29,15 @@ const tabData: TabProps[] = [
 ]
 
 function App () {
-  const [selected, setSelected] = useState(tabData[0].id)
-
   return (
     <div className='App'>
-      <h1>Tabs Component</h1>
+      <h1>
+        Tabs <span>Component</span>
+      </h1>
       <Tabs
         tabs={tabData}
-        selectedTab={selected}
-        handleSelect={setSelected}
-        ariaLabelTabList='Main sections'
+        preSelectedTab={tabData[0].id}
+        tabListLabel='Main sections'
         variant='pill'
       />
     </div>
