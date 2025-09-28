@@ -2,20 +2,20 @@ export type TabVariant = 'underline' | 'pill'
 export type BadgeVariant = 'neutral' | 'positive' | 'negative'
 
 export interface BadgeProps {
-  label: string // Text displayed inside the badge
-  variant: BadgeVariant // Visual style of the badge
+  label: string
+  variant: BadgeVariant
 }
 
 export interface TabProps {
-  id: string // Unique identifier for the tab
-  label: string // Text displayed on the tab
-  badge?: BadgeProps // Optional badge displayed on the tab
-  content?: React.ReactNode // Content displayed when the tab is selected
+  id: string
+  label: string
+  badge?: BadgeProps
+  content?: React.ReactNode
 }
 
 export interface TabsProps {
-  tabs: TabProps[] // Array of tab objects
-  tabListLabel: string // ARIA label for the tab list
-  preSelectedTab: string // ID of the tab to be selected initially
-  variant?: TabVariant // Visual style of the tabs
+  tabs: TabProps[]
+  tabListLabel: string
+  preSelectedTab: string
+  variant?: TabVariant
 }

@@ -1,38 +1,50 @@
-// Main colors
-$color-neutral: #ffffff;
+// -----------------------------
+// Base Colors
+// -----------------------------
+$color-background: #ffffff;
 $color-primary: #8334c2;
 $color-secondary: #00748b;
-$color-gray: #d3d3dc;
 $color-gray-light: #f3f3f8;
+$color-gray: #d3d3dc;
 $color-gray-dark: #9a9ab3;
 
-// Label colors
-$label-color-primary: #1b2134;
-$label-color-neutral: #ffffff;
+// -----------------------------
+// Text Colors
+// -----------------------------
+$color-text-primary: #1b2134;
+$color-text-neutral: #ffffff;
 
-// Badge colors
-$badge-color-neutral: #f1f1f7;
-$badge-color-positive: #b1ffc7;
-$badge-color-negative: #ffbfb1;
+// -----------------------------    
+// Badge Colors
+// -----------------------------
+$color-badge-neutral: #f1f1f7;
+$color-badge-positive: #b1ffc7;
+$color-badge-negative: #ffbfb1;
 
-// Tab colors
-$tab-selected-default: #1b2134;
-$tab-selected-hover: #343a4e;
-$tab-selected-active: #585d71;
-$tab-unselected-default: #ffffff;
-$tab-unselected-hover: #f6f6fa;
-$tab-unselected-active: #f1f1f7;
-$tab-unselected-border: #d3d3dc;
-$tab-unselected-border-hover: #c4c5cf;
+// -----------------------------
+// Tab Colors
+// -----------------------------        
+$color-tab-selected-default: #1b2134;
+$color-tab-selected-hover: #343a4e;
+$color-tab-selected-active: #585d71;
+$color-tab-unselected-default: #ffffff;
+$color-tab-unselected-hover: #f6f6fa;
+$color-tab-unselected-active: #f1f1f7;
+$color-tab-unselected-border: #d3d3dc;
+$color-tab-unselected-border-hover: #c4c5cf;
 
-// Fonts
+// -----------------------------
+// Typography
+// -----------------------------
 $font-family: 'Inter', sans-serif;
 $font-size-s: 0.75rem; // 12px
 $font-size-m: 0.875rem; // 14px
 $font-size-l: 1rem; // 16px
 $font-size-xl: 1.25rem; // 20px
 
-// Spacings
+// -----------------------------
+// Spacing
+// -----------------------------
 $spacer-0: 0; // 0px
 $spacer-4xs: 0.125rem; // 2px
 $spacer-3xs: 0.25rem; // 4px
@@ -44,7 +56,9 @@ $spacer-l: 1.5rem; // 24px
 $spacer-xl: 2rem; // 32px
 $spacer-2xl: 3rem; // 48px
 
-// Border radius
+// -----------------------------
+// Border Radius
+// -----------------------------
 $border-radius-sm: 0.25rem; // 4px
 $border-radius-md: 0.5rem; // 8px
 $border-radius-lg: 0.75rem; // 12px
@@ -53,4 +67,4 @@ $border-radius-2xl: 1.5rem; // 24px
 $border-radius-3xl: 2rem; // 32px
 $border-radius-4xl: 2.5rem; // 40px
 $border-radius-5xl: 5rem; // 80px
-$border-radius-full: 624.9375rem; // 9999px
+$border-radius-full: 9999px; // fully rounded

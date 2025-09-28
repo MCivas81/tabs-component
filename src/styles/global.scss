@@ -2,19 +2,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --neutral: #{$color-neutral};
-  --primary: #{$color-primary};
-  --secondary: #{$color-secondary};
-  --gray: #{$color-gray};
-  --gray-light: #{$color-gray-light};
-  --gray-dark: #{$color-gray-dark};
+  /* Base colors */
+  --color-neutral: #{$color-background};
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-gray-light: #{$color-gray-light};
+  --color-gray: #{$color-gray};
+  --color-gray-dark: #{$color-gray-dark};
 
+  /* Label colors */
+  --color-text-primary: #{$color-text-primary};
+  --color-text-neutral: #{$color-text-neutral};
+
+  /* Badge colors */
+  --color-badge-neutral: #{$color-badge-neutral};
+  --color-badge-positive: #{$color-badge-positive};
+  --color-badge-negative: #{$color-badge-negative};
+
+  /* Tab colors */
+  --color-tab-selected-default: #{$color-tab-selected-default};
+  --color-tab-selected-hover: #{$color-tab-selected-hover};
+  --color-tab-selected-active: #{$color-tab-selected-active};
+  --color-tab-unselected-default: #{$color-tab-unselected-default};
+  --color-tab-unselected-hover: #{$color-tab-unselected-hover};
+  --color-tab-unselected-active: #{$color-tab-unselected-active};
+  --color-tab-unselected-border: #{$color-tab-unselected-border};
+  --color-tab-unselected-border-hover: #{$color-tab-unselected-border-hover};
+
+  /* Typography */
   --font-family: #{$font-family};
   --font-size-s: #{$font-size-s};
   --font-size-m: #{$font-size-m};
   --font-size-l: #{$font-size-l};
   --font-size-xl: #{$font-size-xl};
 
+  /* Spacing */
   --spacer-0: #{$spacer-0};
   --spacer-4xs: #{$spacer-4xs};
   --spacer-3xs: #{$spacer-3xs};
@@ -26,22 +48,7 @@
   --spacer-xl: #{$spacer-xl};
   --spacer-2xl: #{$spacer-2xl};
 
-  --label-color-primary: #{$label-color-primary};
-  --label-color-neutral: #{$label-color-neutral};
-
-  --badge-color-neutral: #{$badge-color-neutral};
-  --badge-color-positive: #{$badge-color-positive};
-  --badge-color-negative: #{$badge-color-negative};
-
-  --tab-selected-default: #{$tab-selected-default};
-  --tab-selected-hover: #{$tab-selected-hover};
-  --tab-selected-active: #{$tab-selected-active};
-  --tab-unselected-default: #{$tab-unselected-default};
-  --tab-unselected-hover: #{$tab-unselected-hover};
-  --tab-unselected-active: #{$tab-unselected-active};
-  --tab-unselected-border: #{$tab-unselected-border};
-  --tab-unselected-border-hover: #{$tab-unselected-border-hover};
-
+  /* Border radius */
   --radius-sm: #{$border-radius-sm};
   --radius-md: #{$border-radius-md};
   --radius-lg: #{$border-radius-lg};
@@ -54,10 +61,10 @@
 }
 
 body {
-  background-color: var(--neutral);
-  color: var(--label-color-primary);
-  margin: 0;
-  min-height: 100vh;
-  padding: 0;
+  background-color: var(--color-neutral);
+  color: var(--color-text-primary);
   font-family: var(--font-family);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }

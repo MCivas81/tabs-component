@@ -64,22 +64,22 @@
 
       &:hover::after,
       &.active::after {
-        @include underline-bar(var(--tab-unselected-border-hover));
+        @include underline-bar(var(--color-tab-unselected-border-hover));
       }
 
       &:focus-visible {
-        outline: 2px solid var(--tab-selected-default);
+        outline: 2px solid var(--color-tab-selected-default);
         outline-offset: 2px;
         border-radius: var(--radius-sm);
 
         &::after {
-          @include underline-bar(var(--tab-unselected-border-hover));
+          @include underline-bar(var(--color-tab-unselected-border-hover));
         }
       }
 
       &.selected {
         &::after {
-          @include underline-bar(var(--tab-selected-default));
+          @include underline-bar(var(--color-tab-selected-default));
         }
       }
     }
@@ -88,34 +88,34 @@
 
     .tab.tab--pill {
       border-radius: var(--radius-full);
-      border: 1px solid var(--tab-unselected-border);
-      background: var(--tab-unselected-default);
+      border: 1px solid var(--color-tab-unselected-border);
+      background: var(--color-tab-unselected-default);
 
       &:hover {
-        background: var(--tab-unselected-hover);
-        border: 1px solid var(--tab-unselected-border-hover);
+        background: var(--color-tab-unselected-hover);
+        border: 1px solid var(--color-tab-unselected-border-hover);
       }
 
       &:active {
-        background: var(--tab-unselected-active);
+        background: var(--color-tab-unselected-active);
       }
 
       &:focus-visible {
-        outline: 2px solid var(--tab-selected-default);
+        outline: 2px solid var(--color-tab-selected-default);
         outline-offset: 2px;
       }
 
       &.selected {
-        background: var(--tab-selected-default);
-        border: 1px solid var(--tab-selected-default);
-        color: var(--label-color-neutral);
+        background: var(--color-tab-selected-default);
+        border: 1px solid var(--color-tab-selected-default);
+        color: var(--color-text-neutral);
 
         &:hover {
-          background: var(--tab-selected-hover);
+          background: var(--color-tab-selected-hover);
         }
 
         &:active {
-          background: var(--tab-selected-active);
+          background: var(--color-tab-selected-active);
         }
       }
     }
@@ -125,7 +125,7 @@
     padding: 0.25rem;
 
     &:focus-visible {
-      outline: 2px solid var(--tab-selected-default);
+      outline: 2px solid var(--color-tab-selected-default);
       outline-offset: 2px;
     }
   }
@@ -137,7 +137,7 @@
 
 .badge {
   padding: var(--spacer-3xs) var(--spacer-2xs);
-  color: var(--label-color-primary);
+  color: var(--color-text-primary);
   border-radius: var(--radius-lg);
   @include body-M;
 
@@ -148,14 +148,14 @@
   }
 
   &--neutral {
-    background: var(--badge-color-neutral);
+    background: var(--color-badge-neutral);
   }
 
   &--positive {
-    background: var(--badge-color-positive);
+    background: var(--color-badge-positive);
   }
 
   &--negative {
-    background: var(--badge-color-negative);
+    background: var(--color-badge-negative);
   }
 }

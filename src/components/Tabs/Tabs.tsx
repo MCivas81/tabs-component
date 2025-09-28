@@ -46,7 +46,6 @@ const Tabs: React.FC<TabsProps> = ({
             id={`tab-${tab.id}`}
             aria-selected={tab.id === selectedTab}
             aria-controls={`panel-${tab.id}`}
-            aria-label={tab.label}
             tabIndex={tab.id === selectedTab ? 0 : -1}
             className={`tab tab--${variant} ${
               tab.id === selectedTab ? 'selected' : ''
@@ -59,7 +58,7 @@ const Tabs: React.FC<TabsProps> = ({
           >
             {tab.label}
             {tab.badge && (
-              <span className={`badge badge--${tab.badge.variant}`}>
+              <span className={`badge badge--${tab.badge.variant}`} aria-hidden='true'>
                 {tab.badge.label}
               </span>
             )}
@@ -73,7 +72,7 @@ const Tabs: React.FC<TabsProps> = ({
               key={tab.id}
               id={`panel-${tab.id}`}
               role='tabpanel'
-              aria-label={tab.label}
+              aria-labelledby={`tab-${tab.id}`}
               className='tabs__panel'
               tabIndex={0}
             >
