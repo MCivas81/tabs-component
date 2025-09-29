@@ -1,6 +1,5 @@
 @mixin body-M {
   font-size: var(--font-size-m);
-  font-weight: 700;
   line-height: 150%;
   font-family: var(--font-family);
 }
@@ -11,11 +10,11 @@
   font-family: var(--font-family);
 }
 
-@mixin button-reset {
-  background: none;
-  border: none;
+@mixin button-reset() {
+  all: unset;
+  box-sizing: border-box;
   cursor: pointer;
-  padding: 0;
+  outline: revert;
 }
 
 @mixin underline-bar($color) {
