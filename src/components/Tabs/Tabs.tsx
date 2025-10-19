@@ -27,7 +27,7 @@ const Tabs: React.FC<TabsProps> = ({
   // Find first enabled tab
   const getFirstEnabledTab = () => {
     const firstEnabled = tabsArray.find(tab => !tab.props.disabled)
-    return firstEnabled ? firstEnabled.props.id : undefined
+    return firstEnabled?.props.id
   }
 
   // Initialize selected tab
@@ -46,8 +46,10 @@ const Tabs: React.FC<TabsProps> = ({
     const current = tabsArray.find(tab => tab.props.id === selectedTab)
     if (!current || current.props.disabled) {
       const nextEnabled = getFirstEnabledTab()
-      setSelectedTab(nextEnabled)
-      onTabChange?.(nextEnabled!)
+      if (nextEnabled) {
+        setSelectedTab(nextEnabled)
+        onTabChange?.(nextEnabled)
+      }
     }
   }, [])
 
