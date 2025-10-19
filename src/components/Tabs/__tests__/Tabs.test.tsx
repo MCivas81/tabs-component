@@ -1,120 +1,150 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import { TabsProps } from '../Tabs.types'
+import { describe, it, expect, vi } from 'vitest'
 import Tabs from '../Tabs'
-import { vi } from 'vitest'
+import Tab from '../Tab'
 
 describe('Tabs component', () => {
-  const defaultTabs: TabsProps['tabs'] = [
-    { id: 'emails', label: 'Emails', content: <div>Emails content</div> },
-    { id: 'files', label: 'Files', content: <div>Files content</div> },
-    {
-      id: 'messages',
-      label: 'Messages',
-      content: <div>Messages content</div>,
-      badge: { label: '3', variant: 'positive' }
-    }
-  ]
-
-  const setup = (preSelectedTab = 'emails') => {
-    return render(
-      <Tabs
-        tabs={defaultTabs}
-        preSelectedTab={preSelectedTab}
-        tabListLabel='User settings'
-        variant='pill'
-      />
-    )
-  }
-
-  it('renders all tab buttons', () => {
-    setup()
-    expect(screen.getByRole('tab', { name: /emails/i })).toBeInTheDocument()
-    expect(screen.getByRole('tab', { name: /files/i })).toBeInTheDocument()
-    expect(screen.getByRole('tab', { name: /messages/i })).toBeInTheDocument()
-  })
-
-  it('shows only the selected tab content', () => {
-    setup('files')
-    expect(screen.getByText(/files content/i)).toBeInTheDocument()
-    expect(screen.queryByText(/emails content/i)).not.toBeInTheDocument()
-  })
-
-  it('changes selected tab when a tab is clicked', () => {
-    setup('emails')
-    fireEvent.click(screen.getByRole('tab', { name: /files/i }))
-    expect(screen.getByText(/files content/i)).toBeInTheDocument()
-    expect(screen.queryByText(/emails content/i)).not.toBeInTheDocument()
-  })
-
-  it('changes selected tab when pressing Enter or Space', () => {
-    setup('emails')
-    const tab = screen.getByRole('tab', { name: /files/i })
-    fireEvent.keyDown(tab, { key: 'Enter' })
-    expect(screen.getByText(/files content/i)).toBeInTheDocument()
-    fireEvent.keyDown(tab, { key: ' ' })
-    expect(screen.getByText(/files content/i)).toBeInTheDocument()
-  })
-
-  it('focuses next tab on ArrowRight keydown', () => {
-    setup('emails')
-    const emailsTab = screen.getByRole('tab', { name: /emails/i })
-    const filesTab = screen.getByRole('tab', { name: /files/i })
-
-    filesTab.focus = vi.fn()
-    fireEvent.keyDown(emailsTab, { key: 'ArrowRight' })
-    expect(filesTab.focus).toHaveBeenCalled()
-  })
-
-  it('focuses previous tab on ArrowLeft keydown', () => {
-    setup('files')
-    const filesTab = screen.getByRole('tab', { name: /files/i })
-    const emailsTab = screen.getByRole('tab', { name: /emails/i })
-
-    emailsTab.focus = vi.fn()
-    fireEvent.keyDown(filesTab, { key: 'ArrowLeft' })
-    expect(emailsTab.focus).toHaveBeenCalled()
-  })
-
-  it('wraps focus to first tab when ArrowRight on last tab', () => {
-    setup('messages')
-    const messagesTab = screen.getByRole('tab', { name: /messages/i })
-    const emailsTab = screen.getByRole('tab', { name: /emails/i })
-
-    emailsTab.focus = vi.fn()
-    fireEvent.keyDown(messagesTab, { key: 'ArrowRight' })
-    expect(emailsTab.focus).toHaveBeenCalled()
-  })
-
-  it('wraps focus to last tab when ArrowLeft on first tab', () => {
-    setup('emails')
-    const emailsTab = screen.getByRole('tab', { name: /emails/i })
-    const messagesTab = screen.getByRole('tab', { name: /messages/i })
-
-    messagesTab.focus = vi.fn()
-    fireEvent.keyDown(emailsTab, { key: 'ArrowLeft' })
-    expect(messagesTab.focus).toHaveBeenCalled()
-  })
-
-  it('renders a badge if provided', () => {
-    setup()
-    expect(screen.getByText('3')).toHaveClass('badge')
-    expect(screen.getByText('3')).toHaveClass('badge--positive')
-  })
-
-  it('applies the correct variant class to tablist and tabs', () => {
-    setup('emails')
-    const tablist = screen.getByRole('tablist')
-    expect(tablist).toHaveClass('tabs__list--pill')
-    expect(screen.getByRole('tab', { name: /emails/i })).toHaveClass(
-      'tab--pill'
-    )
-  })
-
-  it('renders nothing if tabs array is empty', () => {
+  const renderTabs = (tabsProps = {}) =>
     render(
-      <Tabs tabs={[]} preSelectedTab='' tabListLabel='User settings' />
+      <Tabs tabListLabel='Example tabs' {...tabsProps}>
+        <Tab id='tab-1' label='Tab 1'>
+          Content 1
+        </Tab>
+        <Tab id='tab-2' label='Tab 2'>
+          Content 2
+        </Tab>
+        <Tab id='tab-3' label='Tab 3'>
+          Content 3
+        </Tab>
+      </Tabs>
     )
-    expect(screen.queryByRole('tab')).not.toBeInTheDocument()
-    expect(screen.queryByRole('tabpanel')).not.toBeInTheDocument()
+
+  it('renders correctly with given tabs', () => {
+    renderTabs()
+    expect(screen.getByRole('tablist')).toBeInTheDocument()
+    expect(screen.getAllByRole('tab')).toHaveLength(3)
+    expect(screen.getByText('Tab 1')).toBeInTheDocument()
+    expect(screen.getByText('Tab 2')).toBeInTheDocument()
+    expect(screen.getByText('Tab 3')).toBeInTheDocument()
+    expect(screen.getByText('Content 1')).toBeVisible()
+  })
+
+  it('applies the provided tabListLabel as aria-label on the tablist', () => {
+    renderTabs()
+    expect(
+      screen.getByRole('tablist', { name: 'Example tabs' })
+    ).toBeInTheDocument()
+  })
+
+  it('applies variant classes to list and tabs', () => {
+    renderTabs({ variant: 'pills' })
+    const tablist = screen.getByRole('tablist')
+    expect(tablist.className).toContain('tabs__list--pills')
+
+    const tabs = screen.getAllByRole('tab')
+
+    tabs.forEach(tab => {
+      expect(tab.className).toContain('tab--pills')
+    })
+  })
+
+  it('selects the first tab by default', () => {
+    renderTabs()
+    const tab1 = screen.getByRole('tab', { name: 'Tab 1' })
+    expect(tab1).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByText('Content 1')).toBeVisible()
+  })
+
+  it('selects the preSelectedTab on initial render', () => {
+    renderTabs({ preSelectedTab: 'tab-2' })
+    const tab2 = screen.getByRole('tab', { name: 'Tab 2' })
+    expect(tab2).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByText('Content 2')).toBeVisible()
+  })
+
+  it('calls onTabChange when a tab is clicked', () => {
+    const onTabChange = vi.fn()
+    renderTabs({ onTabChange })
+
+    const tab2 = screen.getByRole('tab', { name: 'Tab 2' })
+    fireEvent.click(tab2)
+
+    expect(onTabChange).toHaveBeenCalledWith('tab-2')
+    expect(tab2).toHaveAttribute('aria-selected', 'true')
+  })
+
+  it('handles ArrowRight and ArrowLeft keyboard navigation', () => {
+    renderTabs()
+
+    const tabs = screen.getAllByRole('tab')
+    tabs[0].focus()
+
+    fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(tabs[1])
+
+    fireEvent.keyDown(tabs[1], { key: 'ArrowLeft' })
+    expect(document.activeElement).toBe(tabs[0])
+  })
+
+  it('handles Home and End keys', () => {
+    renderTabs()
+
+    const tabs = screen.getAllByRole('tab')
+    tabs[1].focus()
+
+    fireEvent.keyDown(tabs[1], { key: 'End' })
+    expect(document.activeElement).toBe(tabs[2])
+
+    fireEvent.keyDown(tabs[2], { key: 'Home' })
+    expect(document.activeElement).toBe(tabs[0])
+  })
+
+  it('autoSelect changes selected tab on keyboard navigation', () => {
+    renderTabs({ autoSelect: true })
+    const tabs = screen.getAllByRole('tab')
+
+    tabs[0].focus()
+    fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })
+
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByText('Content 2')).toBeVisible()
+  })
+
+  it('handles disabled tabs correctly', () => {
+    render(
+      <Tabs tabListLabel='Disabled tabs example'>
+        <Tab id='tab-1' label='Tab 1'>
+          Content 1
+        </Tab>
+        <Tab id='tab-2' label='Tab 2' disabled>
+          Content 2
+        </Tab>
+        <Tab id='tab-3' label='Tab 3'>
+          Content 3
+        </Tab>
+      </Tabs>
+    )
+    const tab2 = screen.getByRole('tab', { name: 'Tab 2' })
+    expect(tab2).toBeDisabled()
+    expect(screen.getByText('Content 1')).toBeVisible()
+
+    fireEvent.click(tab2)
+    expect(screen.getByText('Content 1')).toBeVisible()
+
+    const tabs = screen.getAllByRole('tab')
+    tabs[0].focus()
+    fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(tabs[2])
+  })
+
+  it('throws error if child is not a Tab element', () => {
+    const InvalidChild = () => <div>Invalid</div>
+    expect(() =>
+      render(
+        <Tabs tabListLabel='Invalid test'>
+          <InvalidChild />
+        </Tabs>
+      )
+    ).toThrow('<Tabs> only accepts <Tab> elements as children.')
   })
 })

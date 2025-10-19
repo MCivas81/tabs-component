@@ -1,32 +1,10 @@
 import Tabs from './components/Tabs/Tabs'
-import { TabProps } from './components/Tabs/Tabs.types'
+import Tab from './components/Tabs/Tab'
 import DashboardContent from './components/TabsContent/DashboardContent'
 import EmailsContent from './components/TabsContent/EmailsContent'
 import FilesContent from './components/TabsContent/FilesContent'
 import MessagesContent from './components/TabsContent/MessagesContent'
 import './App.scss'
-
-const tabData: TabProps[] = [
-  { id: '1', label: 'Dashboard', content: <DashboardContent /> },
-  {
-    id: '2',
-    label: 'Emails',
-    badge: { label: 'Info', variant: 'neutral' },
-    content: <EmailsContent />
-  },
-  {
-    id: '3',
-    label: 'Files',
-    badge: { label: 'Success', variant: 'positive' },
-    content: <FilesContent />
-  },
-  {
-    id: '4',
-    label: 'Messages',
-    badge: { label: 'Warning', variant: 'negative' },
-    content: <MessagesContent />
-  }
-]
 
 function App () {
   return (
@@ -34,12 +12,32 @@ function App () {
       <h1>
         Tabs <span>Component</span>
       </h1>
-      <Tabs
-        tabs={tabData}
-        preSelectedTab={tabData[0].id}
-        tabListLabel='Main sections'
-        variant='pill'
-      />
+      <Tabs variant='pill' tabListLabel='User settings'>
+        <Tab id='dashboard' label='Dashboard'>
+          <DashboardContent />
+        </Tab>
+        <Tab
+          id='emails'
+          label='Emails'
+          badge={{ label: 'Info', variant: 'neutral' }}
+        >
+          <EmailsContent />
+        </Tab>
+        <Tab
+          id='files'
+          label='Files'
+          badge={{ label: 'Warning', variant: 'negative' }}
+        >
+          <FilesContent />
+        </Tab>
+        <Tab
+          id='messages'
+          label='Messages'
+          badge={{ label: 'Success', variant: 'positive' }}
+        >
+          <MessagesContent />
+        </Tab>
+      </Tabs>
     </div>
   )
 }

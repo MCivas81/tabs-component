@@ -52,6 +52,11 @@
         @include body-S;
         height: 2.625rem;
       }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
     }
 
     // ---------- VARIANT: UNDERLINE ----------
@@ -60,8 +65,8 @@
       position: relative;
       background: transparent;
 
-      &:hover::after,
-      &.active::after {
+      &:hover::after:not(:disabled),
+      &.active::after:not(:disabled) {
         @include underline-bar(var(--color-tab-unselected-border-hover));
       }
 
@@ -94,16 +99,16 @@
         padding-inline: var(--spacer-xs);
       }
 
-      &:hover {
+      &:hover:not(:disabled) {
         background: var(--color-tab-unselected-hover);
         border: 1px solid var(--color-tab-unselected-border-hover);
       }
 
-      &:active {
+      &:active:not(:disabled) {
         background: var(--color-tab-unselected-active);
       }
 
-      &:focus {
+      &:focus:not(:disabled) {
         outline: 2px solid var(--color-tab-selected-default);
         outline-offset: 2px;
       }
@@ -113,12 +118,12 @@
         border: 1px solid var(--color-tab-selected-default);
         color: var(--color-text-neutral);
 
-        &:hover {
+        &:hover:not(:disabled) {
           background: var(--color-tab-selected-hover);
           border: 1px solid var(--color-tab-selected-hover);
         }
 
-        &:active {
+        &:active:not(:disabled) {
           background: var(--color-tab-selected-active);
           border: 1px solid var(--color-tab-selected-active);
         }
@@ -126,7 +131,7 @@
     }
   }
 
-  .tabs__panel {
+  .tab__panel {
     padding: 0.25rem;
 
     &:focus-visible {
